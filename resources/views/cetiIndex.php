@@ -39,8 +39,8 @@
               <li class="dropdown">
                 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opciones<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#!/InsertRecords">Altas</a></li>
-                  <li><a href="#!/InsertMassiveRecord">Altas Masivas</a></li>
+                  <li><a ui-sref="InsertRecords">Altas</a></li>
+                  <li><a ui-sref="InsertMassiveRecord">Altas Masivas</a></li>
                 </ul>
               </li>
             </ul>
@@ -49,7 +49,7 @@
     </nav>
       <div class="container">
       <!-- form Insert -->     
-            <div ng-view>  </div>
+          <data data-ui-view></data>
 
           </div>        
         </main>
@@ -62,6 +62,9 @@
     <script src="https://framework-gb.cdn.gob.mx/qa/gobmx.js"></script>
     <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
     <script src="<?= asset('js/angular/angular-animate.min.js') ?>" ></script>
+    <script src="<?= asset('js/angular/angular-cookies.min.js') ?>" ></script>
+    <script src="<?= asset('js/angular/angular-resource.min.js') ?>" ></script>
+    <script src="<?= asset('js/angular/angular-ui-router.min.js') ?>" ></script>
 
     <!-- Excel Angular -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.13/xlsx.full.min.js"></script>
@@ -72,6 +75,8 @@
 
     <!-- Angular Files --> 
     <script src="<?= asset('app/app.module.js') ?>"></script>
+    <script src="<?= asset('app/config.js') ?>"></script>
+    <script src="<?= asset('app/services.js') ?>"></script>
     <script src="<?= asset('app/create/CreateItemPageController.js') ?>"></script>
     <script src="<?= asset('app/create/MassiveToolPageController.js')?>"></script>
 

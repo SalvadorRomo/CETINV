@@ -1,4 +1,4 @@
-CetiInv.controller('CreateItemPageController',['$scope', '$http', '$location', '$routeParams','toaster',
+CetiInv.controller('CreateItemPageController',['$scope', '$http', '$location','toaster',
 		function($scope, $http, $location, $routeParams,toaster){
 
 	$scope.insertGoodsProduct = function ( products, invoice ,invoiceDetail , goods){	
