@@ -1,0 +1,50 @@
+ <div ng-controller = "MassiveToolPageController">
+ <toaster-container toaster-options="{'close-button':false, 'time-out':{ 'toast-warning': 2000, 'toast-error': 0 } }"> </toaster-container>
+ <br>
+  <br>    
+    <h3>Carga Masiva de registros</h3>
+    <hr>
+    <br>
+      <js-xls onread="read" onerror="error"> </js-xls>
+
+    <br>
+<!-- Table -->                
+     <table class="table table-bordered"  >
+              <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Descripcion</th>                   
+                    <th>Precio</th>                                       
+                    <th>Nombre proveedor</th>                                       
+                    <th>Telefono proveedor</th>                                       
+                    <th>Correo Proveedor</th>                                       
+                    <th>Estado</th>                                       
+                    <th>Cuenta</th>                                       
+                    <th>Subcuenta</th>                                                         
+                    <th>Cantidad</th>                                                         
+                    <th>descuento</th>                                                                                  
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr ng-repeat="records in data" >
+                    <td>{{records.nombre}}</td>
+                    <td>{{records.marca}}</td>
+                    <td>{{records.modelo}}</td>
+                    <td>{{records.descripcion}}</td>
+                    <td>{{records.precio}}</td>
+                    <td>{{records.nomprovedor}}</td>
+                    <td>{{records.telprovedor}}</td>
+                    <td>{{records.correoprov}}</td>
+                    <td>{{records.estado}}</td>
+                    <td>{{records.cuenta}}</td>
+                    <td>{{records.subcuenta}}</td>
+                    <td>{{records.cantidad}}</td>
+                    <td>{{records.descuento}}</td>  
+                  </tr>
+                </tbody>
+              </table>            
+            <br>
+        <button ng-click ="addMultipleRecordsProducts(data)">Insertar info</button>
+</div>
