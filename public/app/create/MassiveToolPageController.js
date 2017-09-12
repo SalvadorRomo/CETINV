@@ -47,7 +47,7 @@ CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http', func
 			console.log(arr);
 				$http({
 				   	  method: 'Post',
-					  url  	: '/insertMultipleRecords',
+					  url  	: 'insertMultipleRecords',
 					  data 	:  { data : arr}
 					})
 					.then(function successCallback(response) {
