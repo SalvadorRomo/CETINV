@@ -8,7 +8,8 @@
       <js-xls onread="read" onerror="error"> </js-xls>
 
     <br>
-<!-- Table -->                
+<!-- Table --> 
+             
      <table class="table table-bordered"  >
               <thead>
                   <tr>
@@ -28,23 +29,14 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <tr ng-repeat="records in data" >
-                    <td>{{records.nombre}}</td>
-                    <td>{{records.marca}}</td>
-                    <td>{{records.modelo}}</td>
-                    <td>{{records.descripcion}}</td>
-                    <td>{{records.precio}}</td>
-                    <td>{{records.nomprovedor}}</td>
-                    <td>{{records.telprovedor}}</td>
-                    <td>{{records.correoprov}}</td>
-                    <td>{{records.estado}}</td>
-                    <td>{{records.cuenta}}</td>
-                    <td>{{records.subcuenta}}</td>
-                    <td>{{records.cantidad}}</td>
-                    <td>{{records.descuento}}</td>  
+                  <tr ng-repeat="item in data" >             
+                    <td ng-repeat="(key ,val) in item" >
+                      <input type="text" name="widget.title" ng-model="item[key]" value="{{val}}"/>
+                    </td>
                   </tr>
                 </tbody>
-              </table>            
+              </table>  
+                    
             <br>
-        <button ng-click ="addMultipleRecordsProducts(data)">Insertar info</button>
+        <button ng-click ="addMultipleRecordsProducts(data,headers)">Insertar info</button>
 </div>
