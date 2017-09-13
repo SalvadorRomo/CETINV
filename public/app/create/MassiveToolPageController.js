@@ -2,18 +2,20 @@ CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http', func
 
 	$scope.data = [];
 	$scope.show = false;
-	
+	$scope.headers = [];
 	$scope.read = function(workbook){
 		
 		var listError = []; 
 		var stringErr = '';
 		var headerNames = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]], { header: 1 })[0];
+		
 		var	value = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]]);
+		console.log(value);
 		for(var it = 0; it < headerNames.length ; it ++){
 					if(headerNames[it].indexOf(' ') > 0){
 						listError.push(headerNames[it].replace(/ /g,''));
 				}
-	    	}
+			}		
 	     if(listError.length > 0 ){
 	    		for(var it = 0; it < listError.length ; it ++){
 						if(it == listError.length - 1){
@@ -26,11 +28,12 @@ CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http', func
 
 	    	$scope.tostr(stringErr);
 	    	$scope.$apply();	
-
 	    	}else{
-					$scope.data = value;		    		
+					$scope.data = value;
+					$scope.headers = headerNames;		    		
 					$scope.$apply();
-	    	}
+			}
+			
 	};
 
 	$scope.tostr = function(strError){
@@ -42,13 +45,14 @@ CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http', func
             });
 		};
 
-		$scope.addMultipleRecordsProducts = function( arr ){
+		$scope.addMultipleRecordsProducts = function( arr,headers ){
 
 			console.log(arr);
 				$http({
 				   	  method: 'Post',
 					  url  	: 'insertMultipleRecords',
-					  data 	:  { data : arr}
+					  data 	:  { data  : arr ,
+							    head  : headers }
 					})
 					.then(function successCallback(response) {
 					
