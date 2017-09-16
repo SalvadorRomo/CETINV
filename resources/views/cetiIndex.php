@@ -77,8 +77,11 @@
     <script src="<?= asset('app/app.module.js') ?>"></script>
     <script src="<?= asset('app/config.js') ?>"></script>
     <script src="<?= asset('app/services.js') ?>"></script>
+    <script src="<?= asset('app/directives.js') ?>"></script>
     <script src="<?= asset('app/create/CreateItemPageController.js') ?>"></script>
     <script src="<?= asset('app/create/MassiveToolPageController.js')?>"></script>
+    <script src="<?= asset('app/controllers/log.js')?>"></script>
+    <script src="<?= asset('app/controllers/jsPaginacion.js')?>"></script>
 
     <!-- Extension Files --> 
     <script src="<?= asset('js/calendar.js') ?>"></script>

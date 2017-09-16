@@ -12,7 +12,7 @@ CetiInv.controller('CreateItemPageController',['$scope', '$http', '$location','t
 				console.log(objects);				
 				$http({
 				   	  method: 'Post',
-					  url  	: '/insert',
+					  url  	: 'insert',
 					  data 	:  objects
 					})
 					.then(function successCallback(response) {

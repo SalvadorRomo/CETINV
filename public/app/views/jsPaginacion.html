@@ -1,0 +1,31 @@
+	<div class="ui pagination menu">
+	 	<div class="item">
+	 		<input type="number" ng-model="limite" min="1" step="1" ng-change="getPagesNumber()">
+	 	</div>
+		<a class="icon item" ng-click="goPrev()">
+			<i class="left chevron icon"></i>
+		</a>
+		<a class="item" ng-repeat="pag in paginas" ng-click="goToPage($index)" ng-show="$index <= paginaActual+2 && paginaActual-2 <= $index">{{pag}}</a>
+		<a class="icon item" ng-click="goNext()">
+			<i class="right chevron icon"></i>
+		</a>
+		<a class="item">{{inicio+1}}-{{(limite*(paginaActual+1))+itemsPaginaActual}} de {{itemsFiltrados}}</a>
+      </div>
+      <br>
+      <br>
+	<div class="pagContent"></div>
+	<br>
+	 <div class="ui pagination menu">
+	 	<div class="item">
+	 		<input type="number" ng-model="limite" min="1" step="1" ng-change="getPagesNumber()">
+	 	</div>
+		<a class="icon item" ng-click="goPrev()">
+			<i class="left chevron icon"></i>
+		</a>
+		<a class="item" ng-repeat="pag in paginas" ng-click="goToPage($index)" ng-show="$index <= paginaActual+2 && paginaActual-2 <= $index">{{pag}}</a>
+		<a class="icon item" ng-click="goNext()">
+			<i class="right chevron icon"></i>
+		</a>
+		<a class="item">{{inicio+1}}-{{(limite*(paginaActual+1))+itemsPaginaActual}} de {{itemsFiltrados}}</a>
+      </div>
+    
