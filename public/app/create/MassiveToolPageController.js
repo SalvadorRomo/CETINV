@@ -1,4 +1,4 @@
-CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http', function($scope, toaster , $http){
+CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http','ExcelValidation', function($scope, toaster , $http ,ExcelValidation){
 
 	$scope.data = [];
 	$scope.show = false;
@@ -7,44 +7,29 @@ CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http', func
 		
 		var listError = []; 
 		var stringErr = '';
-		var headerNames = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]], { header: 1 })[0];
-		
+		var headerNames = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]], { header: 1 })[0];	
 		var	value = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]]);
 		console.log(value);
-		for(var it = 0; it < headerNames.length ; it ++){
-					if(headerNames[it].indexOf(' ') > 0){
-						listError.push(headerNames[it].replace(/ /g,''));
-				}
-			}		
-	     if(listError.length > 0 ){
-	    		for(var it = 0; it < listError.length ; it ++){
-						if(it == listError.length - 1){
-							stringErr += listError[it];
-						}
-						else{
-						stringErr += listError[it] + ', '
-					}
-	    		}
+		ExcelValidation.validateHeaders(headerNames)
+			.then(function(succes){	
 
-	    	$scope.tostr(stringErr);
-	    	$scope.$apply();	
-	    	}else{
-					$scope.data = value;
-					$scope.headers = headerNames;		    		
-					$scope.$apply();
-			}
+				$scope.data = value;
+				$scope.headers = headerNames;		    		
+			},
+			function(error){	
+				
+				toaster.pop({
+					type: 'error',
+					title: 'Error de espacios en cabecera',
+					body: error,
+					timeout: 3000
+				});		
+			});
+			
+		
 			
 	};
-
-	$scope.tostr = function(strError){
-		toaster.pop({
-                type: 'error',
-                title: 'Hay espacios en los siguientes encabezados del archivos de excel',
-                body: strError,
-                timeout: 3000
-            });
-		};
-
+	
 		$scope.addMultipleRecordsProducts = function( arr,headers ){
 
 			console.log(arr);

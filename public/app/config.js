@@ -15,6 +15,11 @@ CetiInv
                 url: '/Alta-masiva-productos',
                 templateUrl: 'app/create/CreateMassiveRecord.template.htm',
                 controller: 'MassiveToolPageController'
+            })
+            .state('AsingGoodness', {
+                url : '/Asignar-bienes', 
+                templateUrl:'app/views/AssignPanel.html', 
+                controller : 'AsingPanelPageController'
             });
             
             $urlRouterProvider.otherwise("/Login");

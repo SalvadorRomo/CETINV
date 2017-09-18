@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use App\Bien;
+use App\DetalleFactura;
 use App\Factura;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -14,41 +15,18 @@ class InsertRecordsProductsControllers extends Controller
 
  public function insertProduct (Request $request)
   {
-   		$product = new Producto; 
+      
+        $arr = $request->all();
+        DB::select( "call store_product("    ."'".  $arr["data"]["name"] ."'" . "," . "'" . $arr["data"]["brand"] ."'" . "," ."'" 
+        . $arr["data"]["model"] ."'" . "," ."'" . $arr["data"]["description"] ."'". "," ."'" . $arr["data"]["price"] . "'". "," ."'". $arr["data"]["invnum"]."'"
+        . "," ."'" . $arr["data"]["invnom"] ."'". "," ."'" . $arr["data"]["invdate"]."'" ."," ."'" . $arr["data"]["invdetquan"] ."'". "," ."'" . $arr["data"]["godser"] ."'"
+        . "," ."'" . $arr["data"]["goodstate"] ."'" . "," ."'". $arr["data"]["goodcoun"] ."'" . "," . "'" . $arr["data"]["goodsub"] ."'" . ")"  );
+        
+        return "Registro Creado";   
+  }
 
-   		$product->nombre = $request->input('products.name');
-   		$product->marca = $request->input('products.brand'); 
-   		$product->modelo = $request->input('products.model');
-   		$product->descripcion = $request->input('products.description'); 
-   		$product->precio = $request->input('products.price');   
-        if($product->save())
-        {
-            $invoice = new Factura();
-            $invoice->fecha = $request->input('invoice.date');
-            $invoice->nombre_provedor = $request->input('invoice.name');
-            $invoice->telefono_provedor= $request->input('invoice.telSupp');
-            $invoice->correo_provedor =  $request->input('invoice.emailSupp');            
-           
-            if($invoice -> save())
-            {
-                $good = new Bien; 
-                $good->numero_serie = $request->input('goods.serie');
-                $good->fecha_alta =  $request->input('goods.date'); 
-                $good->estado =  $request->input('goods.state'); 
-                $good->cuenta =  $request->input('goods.account'); 
-                $good->subcuenta =  $request->input('goods.subaccount');
-                $good->ultimo_ticket = 0;
-                $prod = $product->find($product->id);                 
-                $prod->bien()->save($good);
-                $invo  = $invoice->find($invoice->id);
-                $invo->bien()->save($good);
-                return 'Data Saved';
-
-            }     	
-        }                                                                      
-   }
-
-   public function insertMultipleProduct(Request $request){
+   public function insertMultipleProduct(Request $request)
+   {
       
           $arr = $request->all();
           $neArr = ["data" => $arr["data"] ];
@@ -59,6 +37,39 @@ class InsertRecordsProductsControllers extends Controller
           . "," ."'" . $arr["head"][10] ."'" . "," ."'". $arr["head"][11] ."'" . "," . "'" . $arr["head"][12] ."'" . ")"  );
   
           return "se agrego el archivo exitosamente";
-   }
+}
+
+    public function getProductCount(Request $request){
+        /* Variable declaration */
+        $keyValues = array();
+        $keyValuesName = array();
+        /* get quieries */
+        $idGoodnes  = DB::table('biens')->select('producto_id','ultimo_ticket')->get();
+        $prodName   = DB::table('productos')->select('id','nombre')->get();
+        $cont = 0;
+        
+     // var_dump($idGoodnes);
+       foreach($prodName as $prod){
+                $id = $prod->id;
+          // if($keyValues[$id] == null  ){
+            $keyValues[$prod->id] = $prod->nombre;    
+           // }
+        }        
+        foreach($idGoodnes as $val){
+            $idProduc = $val->producto_id; 
+            $tickPro  = $val->ultimo_ticket;           
+            if(  $tickPro == 0 ){
+                $name = $keyValues[$idProduc]; 
+                if(! isset($keyValuesName[$name])){
+                     $keyValuesName[$name] = 0;        
+                }       
+                    $keyValuesName[$name] += 1;              
+            }                
+        }   
+
+         return response()->json(["ids" => $keyValues, "cont" => $keyValuesName]);
+     }
+
+
     
 }

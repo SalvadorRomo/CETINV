@@ -1,24 +1,23 @@
 CetiInv.controller('CreateItemPageController',['$scope', '$http', '$location','toaster',
-		function($scope, $http, $location, $routeParams,toaster){
+		function($scope, $http, $location, $routeParams, toaster){
 
-	$scope.insertGoodsProduct = function ( products, invoice ,invoiceDetail , goods){	
-
-				$("#calendar").datepicker({
-				    onSelect: function() { 
-				        goods.date = $(this).datepicker('getDate'); 
-				    }
-				});
-				var objects = { products, invoice, invoiceDetail, goods};	
-				console.log(objects);				
+	$scope.insertGoodsProduct = function ( products){	
+	
 				$http({
 				   	  method: 'Post',
 					  url  	: '/insert',
-					  data 	:  objects
+					  data 	:  {data: products}
 					})
-					.then(function successCallback(response) {
-					
+					.then(function successCallback(response) {									
+							
+						toaster.pop({
+									type: 'info',
+									title: 'archivos agreagdos',
+									body: response.data,
+									timeout: 3000
+								});		
+								
 						$scope.Product = null;	    
-						toaster.pop('!Exito', "Elemento agregado", "Elemento ha sido agregado");
 
 					  }, function errorCallback(response) {
 					    console.log(response);			    

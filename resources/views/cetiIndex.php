@@ -41,6 +41,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><a ui-sref="InsertRecords">Altas</a></li>
                   <li><a ui-sref="InsertMassiveRecord">Altas Masivas</a></li>
+                  <li><a ui-sref="AsingGoodness"> Asignar Bienes</a></li>
                 </ul>
               </li>
             </ul>
@@ -79,6 +80,8 @@
     <script src="<?= asset('app/services.js') ?>"></script>
     <script src="<?= asset('app/create/CreateItemPageController.js') ?>"></script>
     <script src="<?= asset('app/create/MassiveToolPageController.js')?>"></script>
+    <script src="<?= asset('app/controllers/AsingPanelPageController.js')?>"></script>
+    <script src="<?= asset('app/factory/ExcelValidation.factory.js')?>"></script>
 
     <!-- Extension Files --> 
     <script src="<?= asset('js/calendar.js') ?>"></script>
