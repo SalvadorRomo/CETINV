@@ -65,6 +65,7 @@
     <script src="<?= asset('js/angular/angular-cookies.min.js') ?>" ></script>
     <script src="<?= asset('js/angular/angular-resource.min.js') ?>" ></script>
     <script src="<?= asset('js/angular/angular-ui-router.min.js') ?>" ></script>
+    <script src="<?= asset('js/angular/satellizer.js') ?>" ></script>
 
     <!-- Excel Angular -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.13/xlsx.full.min.js"></script>
