@@ -14,14 +14,14 @@ class CreateDetalleFactura extends Migration
     public function up()
     {
         Schema::create('detallefacturas', function (Blueprint $table) {
+            
             $table->increments('id');
             $table->timestamps();
-            $table->integer('factura_folio')->unsigned();
-            $table->foreign('factura_folio')->references('id')->on('facturas');            
+            $table->integer('factura_numero');
+            $table->foreign('factura_numero')->references('numero_factura')->on('facturas');            
             $table->integer('producto_id')->unsigned();
             $table->foreign('producto_id')->references('id')->on('productos');
             $table->integer('cantidad');
-            $table->integer('descuento');
 
         });
     }

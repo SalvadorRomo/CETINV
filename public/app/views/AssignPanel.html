@@ -1,0 +1,22 @@
+<br>
+    <br>
+    <h1>Panel de asignacion</h1>
+    <hr class="red">
+<div ng-controller="AsingPanelPageController" data-ng-init="init()"> 
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Numero de Bienes disponibles</th>
+            <th>nombre del bien</th>
+            <th>Asigancion</th> 
+          </tr>
+        </thead>
+        <tbody ng-repeat="(key, value) in data">
+          <tr>
+              <td>{{value}}</td>
+              <td>{{key}}</td>   
+              <td><select class="form-control"></select></td>                      
+          </tr>
+        </tbody>
+    </table>
+    </div>

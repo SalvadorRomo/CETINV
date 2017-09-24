@@ -9,8 +9,8 @@
 
     <br>
 <!-- Table --> 
-             
-     <table class="table table-bordered"  >
+<div class="container">
+     <table class="table table-responsive"  >
               <thead>
                   <tr>
                     <th>Nombre</th>
@@ -18,25 +18,25 @@
                     <th>Modelo</th>
                     <th>Descripcion</th>                   
                     <th>Precio</th>                                       
-                    <th>Nombre proveedor</th>                                       
-                    <th>Telefono proveedor</th>                                       
-                    <th>Correo Proveedor</th>                                       
-                    <th>Estado</th>                                       
-                    <th>Cuenta</th>                                       
-                    <th>Subcuenta</th>                                                         
-                    <th>Cantidad</th>                                                         
-                    <th>descuento</th>                                                                                  
+                    <th>Numero Factura</th>                                       
+                    <th>Proveedor</th>                                       
+                    <th>Fecha de factura</th>                                       
+                    <th>Cantidad</th>                                       
+                    <th>No. Serie</th>                                       
+                    <th>Estado</th>                                                         
+                    <th>Cuenta</th>                                                         
+                    <th>Sub cuenta</th>                                                                                  
                   </tr>
                 </thead>
                 <tbody >
                   <tr ng-repeat="item in data" >             
                     <td ng-repeat="(key ,val) in item" >
-                      <input type="text" name="widget.title" ng-model="item[key]" value="{{val}}"/>
+                        {{val}}
                     </td>
                   </tr>
                 </tbody>
               </table>  
-                    
+            </div>
             <br>
         <button ng-click ="addMultipleRecordsProducts(data,headers)">Insertar info</button>
 </div>
