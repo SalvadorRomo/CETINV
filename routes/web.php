@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::post('/insert', 'InsertRecordsProductsControllers@insertProduct');
 Route::post('/insertMultipleRecords', 'InsertRecordsProductsControllers@insertMultipleProduct');
 Route::get('/getRecordsCount' ,'InsertRecordsProductsControllers@getProductCount');
+Route::post('/validation' ,'authController@authenticate');
+Route::post('/login' ,'authController@getAuthenticatedUser');

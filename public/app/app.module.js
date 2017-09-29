@@ -4,6 +4,7 @@ var CetiInv = angular.module('CetiInv', [
     'ngResource',
     'ui.router', 
     'ngCookies',
-    'satellizer'
+    'satellizer',
+    'angular-js-xlsx'
     ]
 )

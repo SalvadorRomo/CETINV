@@ -1,13 +1,13 @@
-CetiInv.factory('Info', ['$resource', function($resource){
-	return {
-		data: $resource('/', {}, {
-
-			getStates: {	//	GENERAL - obtiene los estados de un país determinado
-				method: 'GET',
-				data: {},
-				isArray: false,
-				url: _baseurl + 'cakeController/function'
-			}
-		})
-	};
-}])
+CetiInv
+	.factory('SysAdmin', ['$resource', function($resource){
+		return {
+			Log: $resource('/', {}, {
+				login: {	
+					method: 'POST',
+					data: {user:'@user'},
+					isArray: false,
+					url: '/login'
+				}
+			})
+		};
+	}])

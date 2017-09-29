@@ -1,8 +1,13 @@
-CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http','ExcelValidation', function($scope, toaster , $http ,ExcelValidation){
+CetiInv.controller('MassiveToolPageController',['$scope','toaster','$http','ExcelValidation','$auth', function($scope, toaster , $http ,ExcelValidation,$auth){
 
 	$scope.data = [];
 	$scope.show = false;
 	$scope.headers = [];
+
+	$scope.init = function(){
+		$scope.deniedAcces();
+	}
+
 	$scope.read = function(workbook){
 		
 		var listError = []; 

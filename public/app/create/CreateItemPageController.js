@@ -1,7 +1,11 @@
 CetiInv.controller('CreateItemPageController',['$scope', '$http', '$location','toaster',
 		function($scope, $http, $location, $routeParams, toaster){
-
-	$scope.insertGoodsProduct = function ( products){	
+		
+			$scope.init = function(){
+				$scope.deniedAcces();
+			}
+	
+			$scope.insertGoodsProduct = function ( products){	
 	
 				$http({
 				   	  method: 'Post',
