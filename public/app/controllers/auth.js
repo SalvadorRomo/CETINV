@@ -33,16 +33,18 @@ CetiInv
             });
         }
 
-        $scope.register = function () {
+        $scope.registerUser = function () {
+           console.log($scope.new);
 
-            // $http.post('/api/register',$scope.newUser)
-            //     .success(function(data){
-            //         $scope.email=$scope.newUser.email;
-            //         $scope.password=$scope.newUser.password;
-            //         $scope.login();
-            // })
+            SysAdmin.User.register($scope.new).$promise.then(
+                function(response){
+                    alert("Entro al server");
+                    $state.go('login');
+                },
+                function(response){
+                    alert("Error :(");
 
+                }
+            )
         };
-
-
     });

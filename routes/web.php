@@ -19,3 +19,4 @@ Route::post('/insertMultipleRecords', 'InsertRecordsProductsControllers@insertMu
 Route::get('/getRecordsCount' ,'InsertRecordsProductsControllers@getProductCount');
 Route::post('/validation' ,'authController@authenticate');
 Route::post('/login' ,'authController@getAuthenticatedUser');
+Route::post('/register' ,'authController@registerUser');

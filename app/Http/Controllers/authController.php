@@ -6,6 +6,7 @@ use JWTAuth;
 use App\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class authController extends Controller
@@ -51,5 +52,19 @@ class authController extends Controller
         }
 
         return response()->json(compact('user'));
+    }
+
+    public function registerUser(Request $request){
+
+        $newuser=$request->all();
+        echo "<pre>";
+        var_dump($newuser);
+        echo "</pre>";
+        $password=Hash::make($request->input('password'));
+
+        $newuser['password'] = $password;
+
+        // return User::create($newuser);
+        return "chava, yo hago las cosas como yo quiero en mis dominios";
     }
 }
