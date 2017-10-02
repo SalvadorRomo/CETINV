@@ -18,7 +18,7 @@
     <![endif]-->
 
   </head>
-  <body>
+  <body data-ng-controller="mainController">
     <!-- Contenido -->
     <main class="page">
     <!-- navigation bar --> 
@@ -33,7 +33,7 @@
             </button>
             <a class="navbar-brand" href="/">CETI Inventarios</a>
           </div>
-          <div class="collapse navbar-collapse" id="subenlaces">
+          <div data-ng-if="!checkToken()==false" class="collapse navbar-collapse" id="subenlaces">
             <ul class="nav navbar-nav navbar-right">
             <!--  <li><a href="#">Enlace</a></li> -->
               <li class="dropdown">
@@ -83,6 +83,10 @@
     <script src="<?= asset('app/create/MassiveToolPageController.js')?>"></script>
     <script src="<?= asset('app/controllers/AsingPanelPageController.js')?>"></script>
     <script src="<?= asset('app/factory/ExcelValidation.factory.js')?>"></script>
+    <script src="<?= asset('app/controllers/auth.js')?>"></script>
+    <script src="<?= asset('app/controllers/main.js')?>"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.13/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="//unpkg.com/angular-js-xlsx/angular-js-xlsx.js"></script>
 
     <!-- Extension Files --> 
     <script src="<?= asset('js/calendar.js') ?>"></script>

@@ -1,26 +1,30 @@
 CetiInv
-    .config(function ($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider, $authProvider){
 
         $stateProvider
             .state ('login', {
                 url: '/Login',
                 templateUrl: 'app/views/index.html'
             })
-            .state ('InsertRecords', {
+            .state('InsertRecords', {
                 url: '/Agregar-Productos',
                 templateUrl: 'app/create/CreateRecord.template.htm',
                 controller: 'CreateItemPageController'
             })
-            .state ('InsertMassiveRecord', {
+            .state('InsertMassiveRecord', {
                 url: '/Alta-masiva-productos',
-                templateUrl: 'app/create/CreateMassiveRecord.template.htm',
-                controller: 'MassiveToolPageController'
+                templateUrl: 'app/create/CreateMassiveRecord.template.htm'
             })
             .state('AsingGoodness', {
                 url : '/Asignar-bienes', 
                 templateUrl:'app/views/AssignPanel.html', 
                 controller : 'AsingPanelPageController'
+            })
+            .state('register', {
+                url : '/Registro-usuarios', 
+                templateUrl:'app/views/register.html'
             });
-            
+
+            $authProvider.loginUrl = 'validation';
             $urlRouterProvider.otherwise("/Login");
     });

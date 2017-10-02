@@ -4,7 +4,8 @@ function($scope, $http, $location, $routeParams,toaster){
     $scope.data = []; 
     $scope.ids = [];
     $scope.init = function(){
-
+        $scope.deniedAcces();
+        
         $http({
             method: 'Get',
             url  	: '/getRecordsCount'
