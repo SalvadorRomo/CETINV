@@ -16,6 +16,7 @@ CetiInv
             $auth.login($scope.login).then(function() {
                 return SysAdmin.Log.login($scope.login).$promise.then(
                     function(response){
+                        $state.go('welcome');
                     },
                     function(response){
 

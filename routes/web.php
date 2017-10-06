@@ -14,9 +14,11 @@
 Route::get('/', function () {
     return view('cetiindex');
 });
+
 Route::post('/insert', 'InsertRecordsProductsControllers@insertProduct');
 Route::post('/insertMultipleRecords', 'InsertRecordsProductsControllers@insertMultipleProduct');
 Route::get('/getRecordsCount' ,'InsertRecordsProductsControllers@getProductCount');
 Route::post('/validation' ,'authController@authenticate');
 Route::post('/login' ,'authController@getAuthenticatedUser');
 Route::post('/register' ,'authController@registerUser');
+Route::post('/conncect','redisController@register')->middleware('jwt.auth');

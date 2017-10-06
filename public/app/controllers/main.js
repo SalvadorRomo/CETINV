@@ -10,6 +10,10 @@ CetiInv
                 $state.go('login');
             }
         }
+        $scope.logout = function(){
+                localStorage.clear(); 
+                $state.go('login');
+        }
 
 
     });

@@ -22,7 +22,7 @@
     <!-- Contenido -->
     <main class="page">
     <!-- navigation bar --> 
-      <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
+      <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top" data-ng-cloak>
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
@@ -33,9 +33,8 @@
             </button>
             <a class="navbar-brand" href="/">CETI Inventarios</a>
           </div>
-          <div data-ng-if="!checkToken()==false" class="collapse navbar-collapse" id="subenlaces">
+          <div data-ng-if="!checkToken()==false" class="collapse navbar-collapse" id="subenlaces" >
             <ul class="nav navbar-nav navbar-right">
-            <!--  <li><a href="#">Enlace</a></li> -->
               <li class="dropdown">
                 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opciones<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -44,6 +43,7 @@
                   <li><a ui-sref="AsingGoodness"> Asignar Bienes</a></li>
                 </ul>
               </li>
+             <li><a data-ng-if="!checkToken()==false" href="" data-ng-click="logout()">Salir</a></li>               
             </ul>
           </div>
         </div>
@@ -79,14 +79,18 @@
     <script src="<?= asset('app/app.module.js') ?>"></script>
     <script src="<?= asset('app/config.js') ?>"></script>
     <script src="<?= asset('app/services.js') ?>"></script>
-    <script src="<?= asset('app/create/CreateItemPageController.js') ?>"></script>
-    <script src="<?= asset('app/create/MassiveToolPageController.js')?>"></script>
+    <script src="<?= asset('app/functions.js')?>"></script>
+    
+    <script src="<?= asset('app/controllers/CreateItemPageController.js') ?>"></script>
+    <script src="<?= asset('app/controllers/MassiveToolPageController.js')?>"></script>
     <script src="<?= asset('app/controllers/AsingPanelPageController.js')?>"></script>
-    <script src="<?= asset('app/factory/ExcelValidation.factory.js')?>"></script>
     <script src="<?= asset('app/controllers/auth.js')?>"></script>
     <script src="<?= asset('app/controllers/main.js')?>"></script>
+    <script src="<?= asset('app/controllers/welcome.js')?>"></script>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.13/xlsx.full.min.js"></script>
     <script type="text/javascript" src="//unpkg.com/angular-js-xlsx/angular-js-xlsx.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>	
 
     <!-- Extension Files --> 
     <script src="<?= asset('js/calendar.js') ?>"></script>

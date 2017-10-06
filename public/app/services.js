@@ -15,6 +15,13 @@ CetiInv
 					data: {user:'@user'},
 					isArray: false,
 					url: '/register'
+				}, 
+				connect :{
+					method:'POST', 
+					data:{user : '@data'},
+					isArray:false, 
+					url: '/conncect'
+
 				}
 			})
 		};

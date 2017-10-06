@@ -7,7 +7,7 @@ use App\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Redis;
 
 class authController extends Controller
 {
@@ -24,7 +24,6 @@ class authController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
     }
 
@@ -50,21 +49,16 @@ class authController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
 
         }
-
         return response()->json(compact('user'));
     }
 
     public function registerUser(Request $request){
 
         $newuser=$request->all();
-        echo "<pre>";
-        var_dump($newuser);
-        echo "</pre>";
         $password=Hash::make($request->input('password'));
-
         $newuser['password'] = $password;
-
-        // return User::create($newuser);
+        User::create($newuser);
         return "chava, yo hago las cosas como yo quiero en mis dominios";
     }
+ 
 }

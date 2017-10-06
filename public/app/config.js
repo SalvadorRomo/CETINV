@@ -23,6 +23,10 @@ CetiInv
             .state('register', {
                 url : '/Registro-usuarios', 
                 templateUrl:'app/views/register.html'
+            })
+            .state('welcome',{
+                url:'/Binvenido', 
+                templateUrl:'app/views/welcome.html'                
             });
 
             $authProvider.loginUrl = 'validation';
