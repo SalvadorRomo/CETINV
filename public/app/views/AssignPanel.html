@@ -1,22 +1,23 @@
 <br>
-    <br>
-    <h1>Panel de asignacion</h1>
-    <hr class="red">
-<div ng-controller="AsingPanelPageController" data-ng-init="init()"> 
-<table class="table table-striped">
+<br>
+<h1>Panel de asignacion</h1>
+<hr class="red">
+<div ng-controller="AsingPanelPageController" data-ng-init="init()">
+    <table class="table table-striped">
         <thead>
-          <tr>
-            <th>Numero de Bienes disponibles</th>
-            <th>nombre del bien</th>
-            <th>Asigancion</th> 
-          </tr>
+            <tr>
+                <th>nombre del bien</th>
+                <th>Asiganar</th>
+            </tr>
         </thead>
-        <tbody ng-repeat="(key, value) in data">
-          <tr>
-              <td>{{value}}</td>
-              <td>{{key}}</td>   
-              <td><select class="form-control"></select></td>                      
-          </tr>
+        <tbody ng-repeat=" arr in newArray track by $index">
+            <tr>
+                <td>{{arr.value}}</td>
+                <td><select class="form-control" data-ng-model="id" data-ng-change="assign(id,arr.key)">
+                      <option  data-ng-repeat="(key, value) in managers"  value="{{key}}">{{value}}</option>                                               
+                    </select>
+                </td>
+            </tr>
         </tbody>
     </table>
-    </div>
+</div>

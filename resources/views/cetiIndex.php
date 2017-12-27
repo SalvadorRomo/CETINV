@@ -38,9 +38,10 @@
               <li class="dropdown">
                 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opciones<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a ui-sref="InsertRecords">Altas</a></li>
-                  <li><a ui-sref="InsertMassiveRecord">Altas Masivas</a></li>
-                  <li><a ui-sref="AsingGoodness"> Asignar Bienes</a></li>
+                  <li data-ng-hide="!isUser()"><a ui-sref="InsertRecords">Altas</a></li>
+                  <li data-ng-hide="!isUser()"><a ui-sref="InsertMassiveRecord">Altas Masivas</a></li>
+                  <li data-ng-hide="!isUser()"><a ui-sref="AsingGoodness"> Asignar Bienes</a></li>
+                  <li data-ng-hide="!isAdmin()"><a ui-sref="register"> Registar Usaurios</a></li>               
                 </ul>
               </li>
              <li><a data-ng-if="!checkToken()==false" href="" data-ng-click="logout()">Salir</a></li>               
@@ -87,6 +88,7 @@
     <script src="<?= asset('app/controllers/auth.js')?>"></script>
     <script src="<?= asset('app/controllers/main.js')?>"></script>
     <script src="<?= asset('app/controllers/welcome.js')?>"></script>
+    <script src="<?= asset('app/controllers/editUser.js')?>"></script>
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.13/xlsx.full.min.js"></script>
     <script type="text/javascript" src="//unpkg.com/angular-js-xlsx/angular-js-xlsx.js"></script>

@@ -1,49 +1,64 @@
-<div class="container" data-ng-controller="AuthController">
-	<br>
-	<br>
-	<br>
-	<form class="form-horizontal" role="form">
-		<fieldset>
-            <caption>Forma de registro</caption>
-            <hr>
-            <br>
-                <caption>Nombre:</caption>                            
-                <div class="form-group">
-                    <label class="sr-only col-lg-1" for="nombre">Correo electrónico:</label>
-                    <div class="col-lg-3" align="center">
-                        <input class="form-control" data-ng-model="new.name" id="nombre" placeholder="Ingrese su nombre" type="text">
-                    </div>
+<div class="container" data-ng-controller="editUserController" data-ng-init="init()">
+    <br>
+    <br>
+    <br>
+    <h4>Registro Usuarios</h4>
+    <hr class="red">
+    <form class="form-horizontal" name="register" role="form">
+
+        <caption>Tipo Usuario:</caption>
+        <div class="form-group">
+            <div class="col-lg-3">
+                <select class="form-control" ng-model="new.type" data-ng-change="change(new.type)" required>
+                    <option data-ng-repeat="(key, value) in types" ng-if="$index > 0" value="{{key}}">{{value}}</option> 
+                </select>
+            </div>
+        </div>
+        <caption>Nombre:</caption>
+        <div class="form-group">
+            <label class="sr-only col-lg-1" for="nombre">Correo electrónico:</label>
+            <div class="col-lg-3" align="center">
+                <input class="form-control" data-ng-model="new.name" id="nombre" placeholder="Ingrese su nombre" type="text" required>
+            </div>
+        </div>
+        <caption>Correo</caption>
+        <div class="form-group">
+            <label class="sr-only col-lg-1" for="correo">Correo electrónico:</label>
+            <div class="col-lg-3" align="center">
+                <input class="form-control" data-ng-model="new.email" id="correo" placeholder="Ingrese su correo" type="email" required>
+            </div>
+        </div>
+        <caption>Contrase&ntilde;a</caption>
+        <div class="form-group">
+            <label class="sr-only col-lg-1" for="password">Contraseña</label>
+            <div class="col-lg-3">
+                <input class="form-control" data-ng-model="new.password" id="password" placeholder="Ingrese su contraseña" type="password" required>
+            </div>
+        </div>
+
+        <div ng-hide="!isUser">
+            <caption>Encargado: </caption>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <select class="form-control" data-ng-model="new.manager_string" data-ng-change="changeManag(new.manager_string)">
+                        <option  data-ng-repeat="(key, value) in manag"  value="{{key}}">{{value}}</option>                     
+                    </select>
                 </div>
-      			<caption>Correo</caption>                            
-				<div class="form-group">
-    				<label class="sr-only col-lg-1" for="correo">Correo electrónico:</label>
-    				<div class="col-lg-3" align="center">
-						<input class="form-control" data-ng-model="new.email" id="correo" placeholder="Ingrese su correo" type="email">
-  					</div>
+            </div>
+        </div>
+        <div ng-hide="!isManager">
+            <caption>CETI Area: </caption>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <select class="form-control" data-ng-model="new.idarea" data-ng-change="changeArea(new.idarea)">
+                        <option  data-ng-repeat="(key, value) in areas"  value="{{key}}">{{value}}</option>                     
+                    </select>
                 </div>
-      			<caption>Contrase&ntilde;a</caption>                            
-  				<div class="form-group">
-    				<label class="sr-only col-lg-1" for="password">Contraseña</label>
-    				<div class="col-lg-3">
-						<input class="form-control" data-ng-model="new.password" id="password" placeholder="Ingrese su contraseña" type="password">
-  					</div>
-                </div>
-      			<caption>Tipo de usuario</caption>          
-                <div class="form-group">
-                    <div class="col-lg-3">
-                        <select class="form-control" data-ng-model="new.tipo">
-                            <option value="1">Resguardatario</option>
-                            <option value="2">Supervisor de almacen</option>
-                            <option value="3">Subdirecci&oacute;n</option>
-                            <option value="4">Jefe de materiales</option>
-                            <option value="5">Encargado de &aacute;rea</option>
-                        </select>
-                    </div>
-                </div>
-  			<button class="btn btn-primary" data-ng-click="registerUser()" type="submit">Registrar</button>
-		</fieldset>
-	</form>
-	<br>
-	<br>
-	<br>
+            </div>
+        </div>
+        <button ng-disabled="register.$invalid" class="btn btn-primary" data-ng-click="registerUser(new)" type="submit">Registrar</button>
+    </form>
+    <br>
+    <br>
+    <br>
 </div>

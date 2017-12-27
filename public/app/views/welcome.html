@@ -1,5 +1,19 @@
-<div ng-controller="welcomeController" data-ng-init="init()"> 
+<div ng-controller="welcomeController" data-ng-init="init()">
     <br>
     <br>
     <h1>Benvenido</h1>
+    <br>
+
+    <form role="form">
+        <div class="form-group" ng-model="data">
+            <label class="control-label" for="email-01">id</label>
+            <input class="form-control" id="email-01" ng-model="data.Sid" placeholder="id" type="text">
+            <label class="control-label" for="email-02">Mensajes</label>
+            <input class="form-control" id="email-02" ng-model="data.mess" placeholder="mensaje" type="text">
+        </div>
+        <button class="btn btn-primary" data-ng-click="provarScok(data)" type="submit">Ingresar</button>
+    </form>
+
+
+    <br>
 </div>

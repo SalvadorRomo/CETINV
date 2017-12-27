@@ -15,4 +15,9 @@ class Bien extends Model
 
      	return $this->belongsTo(Producto::class);
      }
+
+     public function detalle()
+     {    
+          return $this->hasMany(Details_item::class);
+     }
 }

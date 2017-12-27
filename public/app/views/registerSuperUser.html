@@ -1,0 +1,36 @@
+<div class="container" data-ng-controller="AuthController">
+    <br>
+    <br>
+    <br>
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <caption>Forma de registro</caption>
+            <hr class="red">
+            <caption>Nombre:</caption>
+            <div class="form-group">
+                <label class="sr-only col-lg-1" for="nombre">Correo electrónico:</label>
+                <div class="col-lg-3" align="center">
+                    <input class="form-control" data-ng-model="new.name" id="nombre" placeholder="Ingrese su nombre" type="text">
+                </div>
+            </div>
+            <caption>Correo</caption>
+            <div class="form-group">
+                <label class="sr-only col-lg-1" for="correo">Correo electrónico:</label>
+                <div class="col-lg-3" align="center">
+                    <input class="form-control" data-ng-model="new.email" id="correo" placeholder="Ingrese su correo" type="email">
+                </div>
+            </div>
+            <caption>Contrase&ntilde;a</caption>
+            <div class="form-group">
+                <label class="sr-only col-lg-1" for="password">Contraseña</label>
+                <div class="col-lg-3">
+                    <input class="form-control" data-ng-model="new.password" id="password" placeholder="Ingrese su contraseña" type="password">
+                </div>
+            </div>
+            <button class="btn btn-primary" data-ng-click="registerSuperUser()" type="submit">Registrar</button>
+        </fieldset>
+    </form>
+    <br>
+    <br>
+    <br>
+</div>

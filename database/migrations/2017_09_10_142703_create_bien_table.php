@@ -26,7 +26,8 @@ class CreateBienTable extends Migration
             $table->foreign('factura_numero')->references('numero_factura')->on('facturas');
             $table->integer('producto_id')->unsigned()->nullable();
             $table->foreign('producto_id')->references('id')->on('productos');            
-            $table->integer('ultimo_ticket');
+            $table->integer('ultimo_ticket')->unsigned();
+            $table->integer('id_details_bien')->unsigned();            
         });
     }
 

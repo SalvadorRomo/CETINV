@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use App\User;
+use App\Ceti_areas;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\DB;
 
 class authController extends Controller
 {
@@ -54,11 +56,57 @@ class authController extends Controller
 
     public function registerUser(Request $request){
 
-        $newuser=$request->all();
-        $password=Hash::make($request->input('password'));
+        $newuser=$request->all();      
+        $password=Hash::make($request->input('password'));         
         $newuser['password'] = $password;
-        User::create($newuser);
-        return "chava, yo hago las cosas como yo quiero en mis dominios";
+        $newuser['idtype'] =  $request->input('idtype');        
+        $newuser['manager'] = $request->input('manager');    
+        //$newuser['manager_string'] = $request->input('manager_string');    
+        $user  = User::create($newuser);
+       
+        if($user ->idtype == 3)
+        {
+            $area = Ceti_areas::find($user->idarea);
+            $area->user_id = $user->id;
+            $area->save();
+            return "chava, yo hago las cosas como yo quiero en mis dominios";
+        }
+        else
+        {
+            
+            return "user created";
+            
+        }
+       
+    }
+
+    public static function getTypesData(Request $request){
+           
+            $types = array();
+            $areas = array(); 
+            $managers = array();
+
+            $usersType = DB::table('user_type')->get();
+            $areasType = DB::table('ceti_areas')->get();
+            $managType = DB::table('users')->where('manager', 1)->get();    
+            $adminId   =  DB::table('users')->where('idtype',1)->get();
+            $idAdmin  = 0;
+
+            foreach($adminId as $ad ) 
+                $idAdmin = $ad->id;
+
+            foreach( $usersType  as  $it)
+                $types[$it->id] = $it->type;
+           
+            foreach($areasType as $ar)
+                $areas[$ar->id] = $ar->name_area;
+                
+            foreach($managType as $ma)
+                $managers[$ma->id] = $ma->name;
+            
+            
+            return response()->json(["ids" =>$types,
+                     "areas_ceti" => $areas, "managers"=> $managers , "admin" =>  $idAdmin]);        
     }
  
 }

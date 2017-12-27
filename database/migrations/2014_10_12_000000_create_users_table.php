@@ -19,10 +19,17 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->tinyInteger('status')->default('0');
-            $table->enum('rol', ['administrador', 'resguardatario','Supervidor de almacen', 'jefe de materiales', 'subdireccion','Encargado de area','Nobody'])->default('Nobody');
+            $table->boolean('manager'); 
+            $table->integer('manager_id')->nulleable();
+            $table->integer('idtype')->unsigned();     
+            $table->integer('idarea')->unsigned();   
+           // $table->enum('rol', ['administrador', 'resguardatario','Supervidor de almacen', 'jefe de materiales', 'subdireccion','Encargado de area','Nobody'])->default('Nobody');
             $table->rememberToken();
             $table->timestamps();
         });
+
+      
+      
     }
 
     /**

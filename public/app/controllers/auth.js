@@ -1,24 +1,30 @@
 CetiInv
-    .controller('AuthController',  function($auth,$state,$http,$rootScope,$scope, SysAdmin) {
+    .controller('AuthController', function($auth, $state, $http, $rootScope, $scope, SysAdmin, toolsFactory, $window) {
 
-    $scope.new={};
-    $scope.loginError=false;
-    $scope.loginErrorText='';
+        $scope.new = {};
+        $scope.loginError = false;
+        $scope.loginErrorText = '';
 
-        $scope.checkToken = function(){
-            if($auth.isAuthenticated() === false){
+        $scope.init = function() {
+            $scope.access();
+        }
+
+        $scope.checkToken = function() {
+            if ($auth.isAuthenticated() === false) {
+                $window.localStorage.clear();
                 state.go('login');
             }
-        }    
-    
+        }
+
         $scope.loginUser = function() {
 
             $auth.login($scope.login).then(function() {
                 return SysAdmin.Log.login($scope.login).$promise.then(
-                    function(response){
+                    function(response) {
+                        localStorage.setItem('type', response.user.idtype);
                         $state.go('welcome');
                     },
-                    function(response){
+                    function(response) {
 
                     }
                 )
@@ -34,18 +40,8 @@ CetiInv
             });
         }
 
-        $scope.registerUser = function () {
-           console.log($scope.new);
-
-            SysAdmin.User.register($scope.new).$promise.then(
-                function(response){
-                    alert("Entro al server");
-                    $state.go('login');
-                },
-                function(response){
-                    alert("Error :(");
-
-                }
-            )
+        $scope.provarScok = function() {
+            toolsFactory.emit('user-connected', 'jk');
         };
+
     });
